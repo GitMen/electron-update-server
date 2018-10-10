@@ -26,6 +26,11 @@ module.exports = {
       username: 'icourt',
       password: 'icourt123456'
     }
+  },
+  jwt: {
+    // Recommended: 63 random alpha-numeric characters for secret
+    // Generate using: https://www.grc.com/passwords.htm
+    token_secret: 'icourt_app_update_2018'
   }
 
 };
