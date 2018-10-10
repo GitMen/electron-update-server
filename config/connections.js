@@ -36,6 +36,14 @@ module.exports.connections = {
     database: 'app_update'
   },
 
+  postgresql: {
+    adapter: 'sails-postgresql',
+    host: '127.0.0.1',
+    user: 'icourt',
+    password: 'icourt123456',
+    database: 'app_update'
+  },
+
   /***************************************************************************
   *                                                                          *
   * MySQL is the world's most popular relational database.                   *
