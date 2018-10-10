@@ -3,7 +3,7 @@
  */
 
 var _ = require('lodash');
-
+require('sails')
 var ChannelService = {
   availableChannels: sails.config.channels
 };
