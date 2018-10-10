@@ -11,6 +11,8 @@ var LdapAuth = require('ldapauth-fork');
 var AuthService = {};
 
 AuthService.authenticate = function(req, options, cb) {
+  console.log(options)
+  console.log(123)
   var username, password, ldap;
   if (!options) {
     throw new Error('Authentication requires options');

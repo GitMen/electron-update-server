@@ -35,8 +35,11 @@ module.exports = {
   //   level: "silent"
   // }
 
-  // auth: {
-  //   secret: 'temppass'
-  // }
-
+  auth: {
+    // Provide a set of credentials that can be used to access the admin interface.
+    static: {
+      username: 'icourt',
+      password: 'icourt123456'
+    }
+  }
 };
