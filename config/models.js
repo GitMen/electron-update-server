@@ -25,6 +25,14 @@ module.exports.models = {
     database: 'app_update'
   },
 
+  located: {
+    adapter: 'sails-postgresql',
+    host: '127.0.0.1',
+    user: 'icourt',
+    password: 'icourt123456',
+    database: 'app_update'
+  },
+
   /***************************************************************************
    *                                                                          *
    * How and whether Sails will attempt to automatically rebuild the          *
