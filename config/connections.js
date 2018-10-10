@@ -29,7 +29,11 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   localDiskDb: {
-    adapter: 'sails-disk'
+    adapter: 'sails-postgresql',
+    host: '127.0.0.1',
+    user: 'icourt',
+    password: 'icourt123456',
+    database: 'app_update'
   },
 
   /***************************************************************************
