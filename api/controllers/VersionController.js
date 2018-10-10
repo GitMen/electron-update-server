@@ -124,6 +124,8 @@ module.exports = {
     var version = req.param('version');
     var channel = req.param('channel') || 'stable';
 
+    sails.log.debug('请求的平台:', platform);
+    sails.log.debug('请求的版本:', version);
     if (!version) {
       return res.badRequest('Requires `version` parameter');
     }
@@ -145,7 +147,7 @@ module.exports = {
     Version
       .findOne(version)
       .then(function(currentVersion) {
-
+        sails.log.debug('currentVersion:', currentVersion);
         var applicableChannels, createdAtFilter;
 
         applicableChannels = ChannelService.getApplicableChannels(channel);
@@ -176,23 +178,22 @@ module.exports = {
 
             var latestVersion;
             sails.log.debug('Newer Versions', newerVersions);
-
+            if (newerVersions.length !== 0) {
+              latestVersion = newerVersions[0]
+            }
+            sails.log.debug('自己赋值的latestVersion：', latestVersion);
             var releaseNotes = _.reduce(
               newerVersions,
               function(prevNotes, newVersion) {
 
-                newVersion.assets = _.filter(newVersion.assets, function(asset) {
-                  return asset.filetype === '.zip';
-                });
+                // newVersion.assets = _.filter(newVersion.assets, function(asset) {
+                //   return asset.filetype === '.zip';
+                // });
 
                 // If one of the assets for this verison apply to our desired
                 // platform then we will skip this version
                 if (!newVersion.assets.length) {
                   return prevNotes;
-                }
-
-                if (!latestVersion && semver.lt(version, newVersion.name)) {
-                  latestVersion = newVersion;
                 }
 
                 // Skip if no notes available for this version
@@ -221,16 +222,25 @@ module.exports = {
 
             sails.log.debug('Version candidate accepted');
 
-            return res.ok({
-              url: url.resolve(
-                sails.config.appUrl,
-                '/download/' + latestVersion.name + '/' +
-                latestVersion.assets[0].platform + '?filetype=zip'
-              ),
+            // let updateUrl = url.resolve(
+            //   sails.config.appUrl,
+            //   '/download/' + latestVersion.name + '/' +
+            //   latestVersion.assets[0].platform + '?filetype='+latestVersion.assets[0].filetype
+            // )
+
+            let updateUrl = url.resolve(
+              sails.config.appUrl,
+              '/download/' + latestVersion.name + '/' +
+              latestVersion.assets[0].platform + '?filetype=dmg'
+            )
+            let responseParma = {
+              url: updateUrl,
               name: latestVersion.name,
               notes: releaseNotes,
               pub_date: latestVersion.createdAt.toISOString()
-            });
+            }
+            sails.log.debug('responseParma:', responseParma);
+            return res.ok(responseParma);
           });
       })
       .catch(res.negotiate);

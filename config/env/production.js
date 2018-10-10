@@ -34,7 +34,7 @@ module.exports = {
   // log: {
   //   level: "silent"
   // }
-
+  appUrl: 'http://192.168.255.56:1337',
   auth: {
     // Provide a set of credentials that can be used to access the admin interface.
     static: {
@@ -46,5 +46,12 @@ module.exports = {
     // Recommended: 63 random alpha-numeric characters for secret
     // Generate using: https://www.grc.com/passwords.htm
     token_secret: 'icourt_app_update_2018'
+  },
+  files: {
+    // Folder must exist and user running the server must have adequate perms
+    dirname: '/root/electron/app',
+    // Maximum allowed file size in bytes
+    // Defaults to 500MB
+    // maxBytes: 524288000
   }
 };

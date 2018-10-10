@@ -16,7 +16,7 @@ module.exports = {
    * Set the default database connection for models in the development       *
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
-
+  appUrl: 'http://192.168.255.56:1337',
   models: {
     connection: 'postgresql'
   },
@@ -31,6 +31,14 @@ module.exports = {
     // Recommended: 63 random alpha-numeric characters for secret
     // Generate using: https://www.grc.com/passwords.htm
     token_secret: 'icourt_app_update_2018'
+  },
+  files: {
+    // Folder must exist and user running the server must have adequate perms
+    dirname: '/root/electron/app',
+    // Maximum allowed file size in bytes
+    // Defaults to 500MB
+    // maxBytes: 524288000
   }
+
 
 };
