@@ -16,6 +16,8 @@ var SkipperDisk = require('skipper-disk');
 var AssetService = {};
 
 AssetService.serveFile = function(req, res, asset) {
+
+  sails.log.debug('asset', asset);
   // Stream the file to the user
   var fileStream = fsx.createReadStream(asset.fd)
     .on('error', function(err) {

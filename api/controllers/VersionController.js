@@ -227,12 +227,6 @@ module.exports = {
             //   '/download/' + latestVersion.name + '/' +
             //   latestVersion.assets[0].platform + '?filetype='+latestVersion.assets[0].filetype
             // )
-            let filetype
-            if (latestVersion.assets[0].platform === 'osx_64') {
-              filetype = 'dmg'
-            } else {
-              filetype = 'exe'
-            }
             let updateUrl = url.resolve(
               sails.config.appUrl,
               '/download/' + latestVersion.name + '/' +
