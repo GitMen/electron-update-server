@@ -236,7 +236,7 @@ module.exports = {
             let updateUrl = url.resolve(
               sails.config.appUrl,
               '/download/' + latestVersion.name + '/' +
-              latestVersion.assets[0].platform + '?filetype=' + filetype
+              latestVersion.assets[0].platform + '/' + latestVersion.name + latestVersion.assets[0].filetype
             )
             let responseParma = {
               url: updateUrl,
